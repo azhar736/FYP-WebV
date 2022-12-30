@@ -7,13 +7,37 @@ import { useState } from "react";
 function Banner() {
   const slides = [
     {
-      url: "https://cdn.pixabay.com/photo/2022/07/15/14/14/mount-cook-7323246_960_720.jpg",
+      url: "https://github.com/azhar736/FYP-Images/blob/2416b678f604ce8fa5459d8704452d6913a578f4/1.jpeg?raw=true",
     },
     {
-      url: "https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_960_720.jpg",
+      url: "https://github.com/azhar736/FYP-Images/blob/main/2.jpeg?raw=true",
     },
     {
-      url: "https://cdn.pixabay.com/photo/2015/02/02/11/09/office-620822_960_720.jpg",
+      url: "https://github.com/azhar736/FYP-Images/blob/main/3.jpeg?raw=true",
+    },
+    {
+      url: "https://github.com/azhar736/FYP-Images/blob/main/4.jpeg?raw=true",
+    },
+    {
+      url: "https://github.com/azhar736/FYP-Images/blob/main/5.jpeg?raw=true",
+    },
+    {
+      url: "https://github.com/azhar736/FYP-Images/blob/main/5.jpeg?raw=true",
+    },
+    {
+      url: "https://github.com/azhar736/FYP-Images/blob/main/6.jpeg?raw=true",
+    },
+    {
+      url: "https://github.com/azhar736/FYP-Images/blob/main/8.jpeg?raw=true",
+    },
+    {
+      url: "https://github.com/azhar736/FYP-Images/blob/main/9.jpeg?raw=true",
+    },
+    {
+      url: "https://github.com/azhar736/FYP-Images/blob/main/10.jpeg?raw=true",
+    },
+    {
+      url: "https://github.com/azhar736/FYP-Images/blob/main/11.jpeg?raw=true",
     },
   ];
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -47,7 +71,7 @@ function Banner() {
         <div className="hidden group-hover:block absolute top-[50%] translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer mr-5">
           <GrNext size={30} onClick={nextSlide} />
         </div>
-        <div className="flex justify-center py-2 absolute bottom-10 left-[700px] ">
+        <div className="flex justify-center py-2 absolute bottom-10 left-[350px] ">
           {slides.map((slide, index) => (
             <div
               key={index}

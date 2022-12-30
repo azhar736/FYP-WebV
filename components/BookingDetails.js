@@ -7,7 +7,7 @@ function BookingDetails() {
     <>
       <div>
         <img
-          class="max-w-full h-auto"
+          className="max-w-full h-auto"
           src="http://usis.iiu.edu.pk:64453//assets/frontend/img/usis/bgpics4.png"
           alt="image description"
         />
