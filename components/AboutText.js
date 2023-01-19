@@ -6,23 +6,20 @@ function AboutText() {
       <div className="flex items-center justify-center">
         <div className="mb-20 w-[1000px]">
           <p className="text-lg font-normal leading-7">
-            What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-            printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type
-            specimen book. It has survived not only five centuries, but also the
-            leap into electronic typesetting, remaining essentially unchanged.
-            It was popularised in the 1960s with the release of Letraset sheets
-            containing Lorem Ipsum passages, and more recently with desktop
-            publishing software like Aldus PageMaker including versions of Lorem
-            Ipsum. Why do we use it? It is a long established fact that a reader
-            will be distracted by the readable content of a page when looking at
-            its layout. The point of using Lorem Ipsum is that it has a
-            more-or-less normal distribution of letters, as opposed to using
-            'Content here, content here', making it look like readable English.
-            Many desktop publishing packages and web page editors now use Lorem
-            Ipsum as their default model text, and a search for 'lorem ipsum'
-            will uncover many web sites still in their infancy.
+            Welcome to our hostel management system! We are a team of dedicated
+            professionals committed to providing efficient and user-friendly
+            software for managing hostels. Our system allows hostel managers to
+            easily handle tasks such as room assignments, billing, and
+            maintenance requests. Additionally, we offer real-time reporting and
+            analytics to help managers make informed decisions. We understand
+            that every hostel is unique and our system is fully customizable to
+            meet the specific needs of your facility. Our customer support team
+            is always available to assist with any questions or issues that may
+            arise. We are constantly updating and improving our system to ensure
+            that it stays ahead of industry standards. Our goal is to make
+            hostel management as smooth and stress-free as possible for our
+            clients. Thank you for considering our hostel management system. We
+            look forward to working with you!
           </p>
         </div>
       </div>

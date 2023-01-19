@@ -1,7 +1,9 @@
+import { useRouter } from "next/router";
 function Card({ Title, Price }) {
+  const router = useRouter();
   return (
     <>
-      <div className="w-full my-5 max-w-sm bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-full my-5 mx-4 max-w-sm bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <img
             className="p-8 rounded-lg"
@@ -70,16 +72,22 @@ function Card({ Title, Price }) {
               5.0
             </span>
           </div>
+          <div>
+            <p>Total Seats:</p>
+          </div>
+          <div>
+            <p>Remaining Seats:</p>
+          </div>
           <div className="flex items-center justify-between">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
               RS: {Price}
             </span>
-            <a
-              href="#"
+            <button
+              onClick={() => router.push("services")}
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Book Now
-            </a>
+            </button>
           </div>
         </div>
       </div>
