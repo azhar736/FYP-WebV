@@ -44,7 +44,13 @@ function Rooms() {
     <div className="flex items-center justify-center">
       <div className="flex justify-between flex-wrap max-w-7xl my-10">
         {rooms?.map((room) => (
-          <Card Title={room.title} Price={room.price} />
+          <Card
+            Title={room.title}
+            Price={room.price}
+            total={room.totalSeates}
+            remaining={room.seatsRemaining}
+            roomId={room._id}
+          />
         ))}
       </div>
     </div>

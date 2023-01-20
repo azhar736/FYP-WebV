@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-function Card({ Title, Price }) {
+function Card({ Title, Price, total, remaining, roomId }) {
   const router = useRouter();
   return (
     <>
@@ -73,17 +73,22 @@ function Card({ Title, Price }) {
             </span>
           </div>
           <div>
-            <p>Total Seats:</p>
+            <p>Total Seats: {total}</p>
           </div>
           <div>
-            <p>Remaining Seats:</p>
+            <p>Remaining Seats: {remaining}</p>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
               RS: {Price}
             </span>
             <button
-              onClick={() => router.push("services")}
+              onClick={() =>
+                router.push({
+                  pathname: "services",
+                  query: { id: roomId },
+                })
+              }
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Book Now
