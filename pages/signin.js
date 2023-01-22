@@ -1,14 +1,19 @@
-import React, { useState } from "react";
 import axios from "axios";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 const BASE_URL = "http://localhost:8000/";
 import { useRouter } from "next/router";
-function signin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import { useFormik } from "formik";
+import { LoginSchema } from "../schemas/loginSchema";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+const initialValues = {
+  email: "",
+  password: "",
+};
+const SignIn = () => {
   const router = useRouter();
-  const sendRequest = async () => {
+  const sendRequest = async (email, password) => {
+    console.log("The DATA in Send Request Message===", email, password);
     try {
       const response = await axios.post(`${BASE_URL}loginUser`, {
         email,
@@ -19,66 +24,101 @@ function signin() {
       localStorage.setItem("AUTH_TOKEN", data1.authToken);
       localStorage.setItem("USER_ID", data1.id);
       if (data1) {
-        router.push("services");
+        router.push("/");
       }
     } catch (error) {
       console.log("error", error.message);
     }
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    sendRequest();
-    console.log("The Name", email);
-    console.log("The Name", password);
-  };
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: LoginSchema,
+      onSubmit: (values, action) => {
+        console.log(values);
+        sendRequest(values.email, values.password);
+        action.resetForm();
+      },
+    });
+  console.log(errors);
+
   return (
     <>
       <Header />
-      <div className="flex items-center justify-center mt-32">
-        <form className="border-2 border-black w-[60%] flex flex-col items-center">
-          <div className="mb-6 w-[350px]">
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Your email
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="enter you email"
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-6 w-[350px]">
-            <label
-              htmlFor="password"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Your password
-            </label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => setPassword(e.target.value)}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Login
-          </button>
-        </form>
+      <div className="flex items-center justify-center h-[100vh] mt-10 bg-white">
+        <div className="w-[470px] rounded-md bg-gray-100 p-5">
+          <form onSubmit={handleSubmit}>
+            <div className="input-block flex flex-col mx-5">
+              <label
+                htmlFor="email"
+                className="input-label text-lg font-semibold"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                autoComplete="off"
+                name="email"
+                id="email"
+                className="border-2 border-gray-500 py-[5px] rounded-md my-2 pl-2"
+                placeholder="Email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.email && touched.email ? (
+                <p className="text-red-600 text-base">{errors.email}</p>
+              ) : null}
+            </div>
+            <div className="input-block flex flex-col mx-5">
+              <label
+                htmlFor="password"
+                className="input-label text-lg font-semibold"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                autoComplete="off"
+                name="password"
+                id="password"
+                className="border-2 border-gray-500 py-[5px] rounded-md my-2 pl-2"
+                placeholder="Password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.password && touched.password ? (
+                <p className="text-red-600 text-base">{errors.password}</p>
+              ) : null}
+            </div>
+            <div className="flex items-center flex-col justify-center my-5">
+              <div>
+                <button
+                  className="input-button text-white text-lg font-semibold w-[300px] flex items-center justify-center py-2 rounded-md bg-blue-500"
+                  type="submit"
+                >
+                  Sign In
+                </button>
+              </div>
+              <div className="my-3 py-2 px-4">
+                <p>
+                  Don't have a account ?{" "}
+                  <span
+                    className="cursor-pointer"
+                    onClick={() => router.push("/signup")}
+                  >
+                    SignUP
+                  </span>
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
       <Footer />
     </>
   );
-}
+};
 
-export default signin;
+export default SignIn;

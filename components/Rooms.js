@@ -42,7 +42,7 @@ function Rooms() {
   };
   return (
     <div className="flex items-center justify-center">
-      <div className="flex justify-between flex-wrap max-w-7xl my-10">
+      <div className="flex w-full mx-10 justify-evenly border-2 border-red-500 flex-wrap max-w-7xl my-10">
         {rooms?.map((room) => (
           <Card
             Title={room.title}

@@ -3,7 +3,7 @@ function Card({ Title, Price, total, remaining, roomId }) {
   const router = useRouter();
   return (
     <>
-      <div className="w-full my-5 mx-4 max-w-sm bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-[350px] my-5 mx-4 max-w-sm border-2 border-green-500 bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <img
             className="p-8 rounded-lg"

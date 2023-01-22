@@ -71,17 +71,6 @@ function Banner() {
         <div className="hidden group-hover:block absolute top-[50%] translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer mr-5">
           <GrNext size={30} onClick={nextSlide} />
         </div>
-        <div className="flex justify-center py-2 absolute bottom-10 left-[350px] ">
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              onClick={() => goToSlide(index)}
-              className="text-8xl cursor-pointer text-black/20"
-            >
-              <BsDot />
-            </div>
-          ))}
-        </div>
       </div>
     </>
   );
