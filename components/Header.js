@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 function Header() {
   const [logggedInfo, setLoggedInfo] = useState(false);
+  const [userName, setUserName] = useState("");
   const router = useRouter();
   useEffect(() => {
     const Token = localStorage.getItem("AUTH_TOKEN");
-    console.log("The Token is: " + Token);
+    setUserName(localStorage.getItem("USER_NAME"));
+    console.log("The Token in Header is==: " + Token);
     if (Token) {
       setLoggedInfo(true);
     }
@@ -16,6 +18,7 @@ function Header() {
     localStorage.removeItem("AUTH_TOKEN");
     localStorage.removeItem("USER_ID");
     router.replace("/");
+    window.location.reload();
   };
 
   return (
@@ -104,21 +107,42 @@ function Header() {
                   Contact
                 </Link>
               </li>
+              {!logggedInfo && (
+                <li>
+                  <Link
+                    href="/signup"
+                    className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    Signup
+                  </Link>
+                </li>
+              )}
+
+              {logggedInfo ? (
+                <li>
+                  <button
+                    onClick={logout}
+                    className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    Logout
+                  </button>
+                </li>
+              ) : (
+                <li>
+                  <Link
+                    href="/signin"
+                    className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    Login
+                  </Link>
+                </li>
+              )}
               <li>
-                <Link
-                  href="/signup"
-                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Signup
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/signin"
-                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Login
-                </Link>
+                {logggedInfo && (
+                  <div className="border-2 border-blue-500 rounded-lg py-1 w-[200px] flex items-start justify-center">
+                    <p>Welcome: {userName ? userName : "Test User"}</p>
+                  </div>
+                )}
               </li>
             </ul>
           </div>

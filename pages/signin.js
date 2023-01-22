@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { LoginSchema } from "../schemas/loginSchema";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useState } from "react";
 
 const initialValues = {
   email: "",
@@ -12,6 +13,7 @@ const initialValues = {
 };
 const SignIn = () => {
   const router = useRouter();
+  const [handlingError, setHandlingError] = useState("");
   const sendRequest = async (email, password) => {
     console.log("The DATA in Send Request Message===", email, password);
     try {
@@ -22,14 +24,23 @@ const SignIn = () => {
       const data1 = await response.data;
       console.log("The DATA from API", data1);
       localStorage.setItem("AUTH_TOKEN", data1.authToken);
+      localStorage.setItem("USER_NAME", data1.name);
       localStorage.setItem("USER_ID", data1.id);
-      if (data1) {
+      if (data1.success) {
+        console.log("Success");
         router.push("/");
+      } else {
+        console.log("Error");
+        setHandlingError(data1.message);
       }
     } catch (error) {
       console.log("error", error.message);
+      setHandlingError(error.message);
     }
   };
+
+  console.log("The ERROR State====", handlingError);
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
@@ -93,6 +104,11 @@ const SignIn = () => {
               ) : null}
             </div>
             <div className="flex items-center flex-col justify-center my-5">
+              {handlingError && (
+                <div className="py-1 w-[250px] flex items-center justify-center">
+                  <p className="text-red-600 text-base">{handlingError}</p>
+                </div>
+              )}
               <div>
                 <button
                   className="input-button text-white text-lg font-semibold w-[300px] flex items-center justify-center py-2 rounded-md bg-blue-500"
