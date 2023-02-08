@@ -5,15 +5,17 @@ import Review from "../components/Review";
 import Rooms from "../components/Rooms";
 import Footer from "../components/Footer";
 import Reviews from "../components/Reviews";
+import UserDashboard from "../components/userDashboard";
 function MyHome() {
   return (
     <>
-      <Header />
+      {/* <Header />
       <Banner />
       <Rooms />
       <Reviews />
       <RectangularCard />
-      <Footer />
+      <Footer /> */}
+      <UserDashboard />
     </>
   );
 }
